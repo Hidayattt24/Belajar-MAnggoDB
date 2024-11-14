@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -8,8 +9,10 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Tambahkan logika submit di sini, seperti mengirim data ke backend
-    console.log({ name, email, password });
+    axios
+      .post("http://localhost:3001/register", { name, email, password })
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   return (
